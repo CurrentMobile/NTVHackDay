@@ -13,7 +13,7 @@
 static NSString * const kTestOauthToken = @"UAEI4LPJYUAEYETDRDXM";
 static NSString * const kTestOrganizerId = @"6011086107";
 
-@interface EventBriteFeedViewModel ()
+@interface EventBriteFeedViewModel ()<PaginationFooterViewModel>
 
 #pragma mark - Writable property redelcartions
 @property (nonatomic, strong, readwrite) RACSubject *contentChangedSignal;
@@ -43,6 +43,8 @@ static NSString * const kTestOrganizerId = @"6011086107";
 @end
 
 @implementation EventBriteFeedViewModel
+
+@synthesize showLoadingSignal = _showLoadingSignal;
 
 - (instancetype)init {
     self = [super init];
@@ -129,6 +131,8 @@ static NSString * const kTestOrganizerId = @"6011086107";
              [(id<RACSubscriber>)(self.contentChangedSignal) sendNext:nil];
          }];
         
+        self.showLoadingSignal = self.fetchNextPageCommand.executing;
+        
     }
     
     return self;
@@ -140,6 +144,10 @@ static NSString * const kTestOrganizerId = @"6011086107";
 
 - (id<EventSummaryViewModelProtocol>)viewModelAtIndex:(NSUInteger)index {
     return [[EventBriteSummaryViewModel alloc] initWithEvent:self.events[index]];
+}
+
+- (id<PaginationFooterViewModel>)viewModelForPaginationIndicator {
+    return self;
 }
 
 @end

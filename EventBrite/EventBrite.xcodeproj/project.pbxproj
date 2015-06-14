@@ -22,6 +22,7 @@
 		935C4AC71B2BA34200E8517D /* FormValidationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C4AC61B2BA34200E8517D /* FormValidationViewController.m */; };
 		935C4ACA1B2BA39500E8517D /* FormValidationViewModelImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C4AC91B2BA39500E8517D /* FormValidationViewModelImplementation.m */; };
 		935C4ACE1B2BB44200E8517D /* EventBriteSummaryViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C4ACD1B2BB44200E8517D /* EventBriteSummaryViewModel.m */; };
+		937BB4CB1B2D28B7007AB55C /* PaginationFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 937BB4CA1B2D28B7007AB55C /* PaginationFooter.m */; };
 		93D1AD4F1B2B69F800A44905 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D1AD4E1B2B69F800A44905 /* main.m */; };
 		93D1AD521B2B69F800A44905 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D1AD511B2B69F800A44905 /* AppDelegate.m */; };
 		93D1AD551B2B69F800A44905 /* EventBrite.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93D1AD531B2B69F800A44905 /* EventBrite.xcdatamodeld */; };
@@ -75,6 +76,9 @@
 		935C4ACB1B2BA3C400E8517D /* FormValidationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormValidationProtocol.h; path = "Scenes/Form Validation/FormValidationProtocol.h"; sourceTree = "<group>"; };
 		935C4ACC1B2BB44200E8517D /* EventBriteSummaryViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventBriteSummaryViewModel.h; path = Scenes/Feed/ViewModel/Implementation/EventBriteSummaryViewModel.h; sourceTree = "<group>"; };
 		935C4ACD1B2BB44200E8517D /* EventBriteSummaryViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventBriteSummaryViewModel.m; path = Scenes/Feed/ViewModel/Implementation/EventBriteSummaryViewModel.m; sourceTree = "<group>"; };
+		937BB4C91B2D28B7007AB55C /* PaginationFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaginationFooter.h; sourceTree = "<group>"; };
+		937BB4CA1B2D28B7007AB55C /* PaginationFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaginationFooter.m; sourceTree = "<group>"; };
+		937BB4CF1B2D2945007AB55C /* PaginationFooterViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaginationFooterViewModel.h; path = Scenes/Feed/ViewModel/Protocol/PaginationFooterViewModel.h; sourceTree = "<group>"; };
 		93D1AD491B2B69F700A44905 /* EventBrite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventBrite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D1AD4D1B2B69F700A44905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93D1AD4E1B2B69F800A44905 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -171,6 +175,8 @@
 				93D1AD571B2B69F800A44905 /* FeedViewController.m */,
 				935C4AB81B2B7B3100E8517D /* EventSummaryCell.h */,
 				935C4AB91B2B7B3100E8517D /* EventSummaryCell.m */,
+				937BB4C91B2D28B7007AB55C /* PaginationFooter.h */,
+				937BB4CA1B2D28B7007AB55C /* PaginationFooter.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -189,6 +195,7 @@
 			children = (
 				935C4AB71B2B7A2F00E8517D /* FeedViewModelProtocol.h */,
 				935C4ABC1B2B7B9600E8517D /* EventSummaryViewModelProtocol.h */,
+				937BB4CF1B2D2945007AB55C /* PaginationFooterViewModel.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -504,6 +511,7 @@
 				935C4AAE1B2B722400E8517D /* MXLEventBriteVenue.m in Sources */,
 				935C4AA81B2B71F900E8517D /* NSDictionary+MXLEventBriteVenue.m in Sources */,
 				93D1AD581B2B69F800A44905 /* FeedViewController.m in Sources */,
+				937BB4CB1B2D28B7007AB55C /* PaginationFooter.m in Sources */,
 				935C4AC01B2B7FAD00E8517D /* EventBriteFeedViewModel.m in Sources */,
 				93E73BEE1B2B6CFB000BA8E1 /* EBClient+Event.m in Sources */,
 				935C4AB11B2B75C500E8517D /* EBClient+Oragnizer.m in Sources */,

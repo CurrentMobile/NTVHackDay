@@ -51,4 +51,6 @@
  */
 - (id<EventSummaryViewModelProtocol>)viewModelAtIndex:(NSUInteger)index;
 
+- (id<PaginationFooterViewModel>)viewModelForPaginationIndicator;
+
 @end

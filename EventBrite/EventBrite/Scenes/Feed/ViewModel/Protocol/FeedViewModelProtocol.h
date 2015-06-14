@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ReactiveCocoa.h>
 #import "EventSummaryViewModelProtocol.h"
+#import "PaginationFooterViewModel.h"
 
 @protocol FeedViewModelProtocol <NSObject>
 
@@ -47,5 +48,7 @@
  *  @return The view model
  */
 - (id<EventSummaryViewModelProtocol>)viewModelAtIndex:(NSUInteger)index;
+
+- (id<PaginationFooterViewModel>)viewModelForPaginationIndicator;
 
 @end

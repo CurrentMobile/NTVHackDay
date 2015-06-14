@@ -12,6 +12,7 @@
 #import "EventBriteFeedViewModel.h"
 #import "FormValidationViewController.h"
 #import "FormValidationViewModelImplementation.h"
+#import "PaginationFooter.h"
 
 typedef NS_ENUM(NSUInteger, FeedCollectionViewSection) {
     FeedCollectionViewSectionEvents,
@@ -53,7 +54,7 @@ static NSString * const kFooterCellIdentifier = @"Footer";
     self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
     self.collectionView.alwaysBounceVertical = YES;
     [self.collectionView registerClass:[EventSummaryCell class] forCellWithReuseIdentifier:kSummaryCellIdentifier];
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:kFooterCellIdentifier];
+    [self.collectionView registerClass:[PaginationFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:kFooterCellIdentifier];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = [UIColor whiteColor];
@@ -66,21 +67,6 @@ static NSString * const kFooterCellIdentifier = @"Footer";
     UIRefreshControl *refresh = [UIRefreshControl new];
     refresh.rac_command = self.viewModel.fetchEventsCommand;
     [self.collectionView addSubview:refresh];
-    
-    
-    [[self.viewModel.fetchNextPageCommand.executing skip:1] subscribeNext:^(NSNumber *executing) {
-        
-        if (executing.boolValue) {
-            UIEdgeInsets insets = self.collectionView.contentInset;
-            insets.bottom += 100.0f;
-            self.collectionView.contentInset = insets;
-        } else {
-            UIEdgeInsets insets = self.collectionView.contentInset;
-            insets.bottom -= 100.0f;
-            self.collectionView.contentInset = insets;
-        }
-        
-    }];
     
 }
 
@@ -110,7 +96,7 @@ static NSString * const kFooterCellIdentifier = @"Footer";
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 2;
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -130,6 +116,17 @@ static NSString * const kFooterCellIdentifier = @"Footer";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"form" sender:self];
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    PaginationFooter *footer = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:kFooterCellIdentifier forIndexPath:indexPath];
+    footer.viewModel = [self.viewModel viewModelForPaginationIndicator];
+    
+    return footer;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+    return CGSizeMake(collectionView.frame.size.width, 100.0f);
 }
 
 
