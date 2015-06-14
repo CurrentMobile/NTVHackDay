@@ -13,7 +13,13 @@
 #import "FormValidationViewController.h"
 #import "FormValidationViewModelImplementation.h"
 
+typedef NS_ENUM(NSUInteger, FeedCollectionViewSection) {
+    FeedCollectionViewSectionEvents,
+    FeedCollectionViewSectionFooter
+};
+
 static NSString * const kSummaryCellIdentifier = @"EventSummaryCell";
+static NSString * const kFooterCellIdentifier = @"Footer";
 
 @interface FeedViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetSource>
 
@@ -47,6 +53,7 @@ static NSString * const kSummaryCellIdentifier = @"EventSummaryCell";
     self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
     self.collectionView.alwaysBounceVertical = YES;
     [self.collectionView registerClass:[EventSummaryCell class] forCellWithReuseIdentifier:kSummaryCellIdentifier];
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:kFooterCellIdentifier];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = [UIColor whiteColor];
@@ -59,6 +66,21 @@ static NSString * const kSummaryCellIdentifier = @"EventSummaryCell";
     UIRefreshControl *refresh = [UIRefreshControl new];
     refresh.rac_command = self.viewModel.fetchEventsCommand;
     [self.collectionView addSubview:refresh];
+    
+    
+    [[self.viewModel.fetchNextPageCommand.executing skip:1] subscribeNext:^(NSNumber *executing) {
+        
+        if (executing.boolValue) {
+            UIEdgeInsets insets = self.collectionView.contentInset;
+            insets.bottom += 100.0f;
+            self.collectionView.contentInset = insets;
+        } else {
+            UIEdgeInsets insets = self.collectionView.contentInset;
+            insets.bottom -= 100.0f;
+            self.collectionView.contentInset = insets;
+        }
+        
+    }];
     
 }
 
@@ -78,17 +100,28 @@ static NSString * const kSummaryCellIdentifier = @"EventSummaryCell";
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.viewModel numberOfEvents];
+    
+    
+    if (section == FeedCollectionViewSectionEvents) {
+        return [self.viewModel numberOfEvents];
+    } else {
+        return 0;
+    }
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
+    return 2;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    EventSummaryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSummaryCellIdentifier forIndexPath:indexPath];
-    cell.viewModel = [self.viewModel viewModelAtIndex:indexPath.row];
-    return cell;
+    
+    if (indexPath.section == FeedCollectionViewSectionEvents) {
+        EventSummaryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSummaryCellIdentifier forIndexPath:indexPath];
+        cell.viewModel = [self.viewModel viewModelAtIndex:indexPath.row];
+        return cell;
+    }
+    
+    return nil;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {

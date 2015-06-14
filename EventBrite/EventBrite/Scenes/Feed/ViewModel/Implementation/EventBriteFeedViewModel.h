@@ -26,7 +26,7 @@
 @property (nonatomic, strong, readonly) RACCommand *fetchEventsCommand;
 
 /**
- *  A command that asks the view model to fetch the next page of events. When/if the requst compltes, the 'contentChangedSignal' will emit and the views should be refreshed.
+ *  A command that asks the view model to fetch the next page of events. When/if the requst completes, the 'contentChangedSignal' will emit and the views should be refreshed.
  */
 @property (nonatomic, strong, readonly) RACCommand *fetchNextPageCommand;
 

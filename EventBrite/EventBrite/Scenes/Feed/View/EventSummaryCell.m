@@ -40,7 +40,7 @@
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[iv]-10-[title]-10-|" options:0 metrics:nil views:@{@"iv" : self.thumbnail, @"title" : self.titleLabel}]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[title]-0-[subtitle]" options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:@{@"title" : self.titleLabel, @"subtitle" : self.subtitleLabel}]];
         
-        self.thumbnail.backgroundColor = [UIColor redColor];
+        self.thumbnail.backgroundColor = [UIColor grayColor];
         
     
         RAC(self, titleLabel.text) = [RACObserve(self, viewModel.name) ignore:NSNull.null];

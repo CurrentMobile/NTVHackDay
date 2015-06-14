@@ -80,7 +80,6 @@ static NSString * const kTestOrganizerId = @"6011086107";
                                                               }];
                                                           }];
         
-        
         self.fetchNextPageCommand = [[RACCommand alloc] initWithEnabled:self.pagingEnabledSignal
                                                             signalBlock:^RACSignal *(id value) {
                                                                 return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -106,26 +105,20 @@ static NSString * const kTestOrganizerId = @"6011086107";
                                                                 }];
                                                             }];
         
-        
         // This is only triggered when the array is empty and not nil;
         RACSignal *emptySignal = [[[RACObserve(self, events) ignore:nil]
                                    filter:^BOOL(NSArray *array) {
                                        return array.count == 0;
-                                   }] map:^id(NSArray *array) {
-                                       return @"There are no events to display";
-                                   }];
+                                   }] mapReplace:@"There are no events to display."];
         
         
         // This is only triggered when the command is executing.
         RACSignal *loadingSignal =  [[self.fetchEventsCommand.executing filter:^BOOL(NSNumber *loading) {
             return loading.boolValue; // only return if executing == YES.
-        }] map:^id(NSNumber *number) {
-            return @"Please wait, loading...";
-        }];
-        
-        RACSignal *errorSignal = [self.fetchEventsCommand.errors map:^id(NSError *error) {
-            return @"There was an error loading your feed";
-        }];
+        }] mapReplace:@"Please wait, loading..."];
+                                     
+        // This is triggered if the empty loading results in an error
+        RACSignal *errorSignal = [self.fetchEventsCommand.errors mapReplace:@"There was an error loading your feed"];
         
         RAC(self, emptyText) = [RACSignal merge:@[emptySignal, loadingSignal, errorSignal]];
         
