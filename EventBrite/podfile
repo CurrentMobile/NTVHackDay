@@ -1,0 +1,9 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '8.0'
+inhibit_all_warnings!
+
+link_with "EventBrite", "EventBriteTests"
+
+pod 'AFNetworking2-RACExtensions', '~> 0.0.1'
+pod 'DZNEmptyDataSet'
