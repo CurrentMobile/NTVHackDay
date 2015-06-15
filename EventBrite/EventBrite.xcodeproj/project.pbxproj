@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1359BA6EF715C9D757B87A88 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3918BB6CAD72803F74F4CFA /* libPods.a */; };
 		925762AECDD22DDD403E6CF8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3918BB6CAD72803F74F4CFA /* libPods.a */; };
+		93369B6C1B2E538B004F5F8D /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 93369B6B1B2E538B004F5F8D /* twitter.png */; };
 		935C4A9B1B2B6F4B00E8517D /* EBClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C4A9A1B2B6F4B00E8517D /* EBClientTests.m */; };
 		935C4A9E1B2B71E200E8517D /* MXLEventBriteEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C4A9D1B2B71E200E8517D /* MXLEventBriteEvent.m */; };
 		935C4AA61B2B71F900E8517D /* NSDictionary+MXLEventBriteEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 935C4AA11B2B71F900E8517D /* NSDictionary+MXLEventBriteEvent.m */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		35B5A24848C4A3F003CC61F2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6FDCAA34DAFF0FF32EB372C0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		93369B6B1B2E538B004F5F8D /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
 		935C4A9A1B2B6F4B00E8517D /* EBClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBClientTests.m; sourceTree = "<group>"; };
 		935C4A9C1B2B71E200E8517D /* MXLEventBriteEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXLEventBriteEvent.h; sourceTree = "<group>"; };
 		935C4A9D1B2B71E200E8517D /* MXLEventBriteEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXLEventBriteEvent.m; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 		935C4AB41B2B79F800E8517D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				93369B6B1B2E538B004F5F8D /* twitter.png */,
 				93D1AD561B2B69F800A44905 /* FeedViewController.h */,
 				93D1AD571B2B69F800A44905 /* FeedViewController.m */,
 				935C4AB81B2B7B3100E8517D /* EventSummaryCell.h */,
@@ -415,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93D1AD5B1B2B69F800A44905 /* Main.storyboard in Resources */,
+				93369B6C1B2E538B004F5F8D /* twitter.png in Resources */,
 				93D1AD601B2B69F800A44905 /* LaunchScreen.xib in Resources */,
 				93D1AD5D1B2B69F800A44905 /* Images.xcassets in Resources */,
 			);

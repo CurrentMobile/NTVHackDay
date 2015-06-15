@@ -8,6 +8,10 @@
 
 #import "PaginationFooter.h"
 
+@interface PaginationFooter ()
+
+@end
+
 @implementation PaginationFooter
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -15,9 +19,13 @@
     
     if (self) {
         UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        indicator.frame = CGRectMake(0, 0, 20, 20);
-        indicator.center = self.center;
+        indicator.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:indicator];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[indicator(20)]" options:0 metrics:nil views:@{@"indicator" : indicator}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[indicator(20)]" options:0 metrics:nil views:@{@"indicator" : indicator}]];
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:indicator attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0.0f]];
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:indicator attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
+        
         
         [[RACObserve(self, viewModel) ignore:nil] subscribeNext:^(id viewModel) {
           
@@ -32,6 +40,7 @@
             }];
             
         }];
+        
     }
     
     return self;

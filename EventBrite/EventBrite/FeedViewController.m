@@ -68,6 +68,16 @@ static NSString * const kFooterCellIdentifier = @"Footer";
     refresh.rac_command = self.viewModel.fetchEventsCommand;
     [self.collectionView addSubview:refresh];
     
+    [self.viewModel.fetchNextPageCommand.executing subscribeNext:^(NSNumber *executing) {
+       
+        if (executing.boolValue) {
+            layout.footerReferenceSize = CGSizeMake(self.collectionView.frame.size.width, 100.0f);
+        } else {
+            layout.footerReferenceSize = CGSizeZero;
+        }
+        
+    }];
+    
 }
 
 - (void)setBindings {
@@ -124,11 +134,6 @@ static NSString * const kFooterCellIdentifier = @"Footer";
     
     return footer;
 }
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-    return CGSizeMake(collectionView.frame.size.width, 100.0f);
-}
-
 
 #pragma mark - UIScrollViewDelegate
 

@@ -11,7 +11,7 @@
 #import "EventBriteSummaryViewModel.h"
 
 static NSString * const kTestOauthToken = @"UAEI4LPJYUAEYETDRDXM";
-static NSString * const kTestOrganizerId = @"6011086107";
+static NSString * const kTestOrganizerId = @"7597844203";
 
 @interface EventBriteFeedViewModel ()<PaginationFooterViewModel>
 
